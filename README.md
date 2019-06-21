@@ -4,7 +4,7 @@ Scripts for the analysis of reentrancies in AMR discussed in [1].
 
 # Causes of reentrancies
 
-Given an AMR corpus (<amr_file>), follow the instructions to quantify the main causes of reentrancies in your data:
+Given an AMR corpus (```<amr_file>```), follow the instructions to quantify the main causes of reentrancies in your data:
 
 - Preprocess the corpus with the preprocessing scripts of AMREager (https://github.com/mdtux89/amr-eager-multilingual):
   ```
@@ -27,7 +27,7 @@ Given an AMR corpus (<amr_file>), follow the instructions to quantify the main c
 
 # Oracle experiments
 
-Given an AMR test set (<test_set>) and the output of a parser (<test_set_parsed>):
+Given an AMR test set (```<test_set>```) and the output of a parser (```<test_set_parsed>```):
 
 - To get the results for all actions in isolation:
   ```
