@@ -3,7 +3,7 @@ import re
 import random
 import argparse
 
-def main(prefix, silent):
+def main(prefix, verbose):
     alldependencies = pickle.load(open(prefix + ".dependencies.p", "rb"))
     allalignments = pickle.load(open(prefix + ".alignments.p", "rb"))
     allrelations = pickle.load(open(prefix + ".relations.p", "rb"))
@@ -98,7 +98,7 @@ def main(prefix, silent):
                             verbalization += 1
                             reent_nodes.remove(x)
 
-        if reent_nodes != [] and not silent:
+        if reent_nodes != [] and verbose:
             rest.append((
                     reent_nodes, graphs, 
                     ' '.join([t.word for t in tokens]), 
@@ -107,7 +107,7 @@ def main(prefix, silent):
                     corefs
             ))
 
-    if not silent:
+    if verbose:
         random.shuffle(rest)
         for example in rest:
             print 'Reentrancies:'
@@ -131,7 +131,7 @@ def main(prefix, silent):
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description='Arguments.')
-    parser.add_argument('-silent', action='store_true')    
+    parser.add_argument('-verbose', action='store_true')    
     parser.add_argument('-prefix', type=str, nargs='?', required=True)
     args = parser.parse_args()
-    main(args.prefix, args.silent)
+    main(args.prefix, args.verbose)
