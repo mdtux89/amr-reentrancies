@@ -17,22 +17,12 @@ for i, tokens in enumerate(alltokens):
     sentence = ' '.join([w.word for w in tokens])
     doc = nlp(sentence.strip())
     corefs = {}
-    for i, tok in enumerate(doc):
-        mentions = []
-        try:
-            #print(dir(tok._))
-            #input()
-            for c in tok._.coref_clusters:
-                #print(dir(c))
-                #input()
-                mentions.append(c.main)
-        except:
-            pass
-        for x in mentions:
-            if tok not in x:
-                if str(x) not in corefs:
-                    corefs[str(x)] = []
-                corefs[str(x)].append((x.start, x.end))
+    for cluster in doc._.coref_clusters:
+        corefs[str(cluster.main)] = (
+            len([str(x) for x in cluster if x != cluster.main]),
+            cluster.main.start,
+            cluster.main.end
+        )
     allcorefs.append(corefs)
 
 pickle.dump(allcorefs, open(prefix + ".corefs.p", "wb"), protocol=2)

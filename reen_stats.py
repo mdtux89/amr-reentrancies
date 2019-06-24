@@ -36,17 +36,18 @@ def main(prefix, verbose):
 
         for c in corefs:
             variables = []
-            for i in range(corefs[c][0][0], corefs[c][0][1]):
-                for x in alignments[i]:
-                    if x.var is not None:
-                        variables.append(x.var)
+            mentions, start, end = corefs[c]
+            for i in range(start, end):
+                if i < len(alignments):
+                    for x in alignments[i]:
+                        if x.var is not None:
+                            variables.append(x.var)
             for v in variables:
-                for i in range(len(corefs[c])):
+                for i in range(mentions):
                     if v in reent_nodes:
                         coreference += 1
                         reent_nodes.remove(v)
-                        corefs[c].pop(0)
-
+                        corefs[c] = (mentions - 1, start, end)                     
 
         for d in dependencies:       
             if d[1] in ['xcomp', 'ccomp', 'advcl']:
