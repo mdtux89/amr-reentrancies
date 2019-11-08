@@ -36,7 +36,7 @@ Given an AMR test set (```<test_set>```) and the output of a parser (```<test_se
 
 - To get the results for the combination of all actions:
   ```
-  ./all_actions.sh <test_set> <test_set_parsed> (--silent)
+  ./all_actions_byscore.sh <test_set> <test_set_parsed> (--silent)
   ```
   
 [1] "The Role of Reentrancies in Abstract Meaning Representation Parsing", Marco Damonte, Ida Szubert, Shay B. Cohen and Mark Steedman. Proceedings of EMNLP (2019). URL: ?
